@@ -1,5 +1,6 @@
 "use client";
 
+<<<<<<< HEAD
 import {
   FilePlus,
   Plus,
@@ -9,6 +10,9 @@ import {
   X,
   Download,
 } from "lucide-react";
+=======
+import { FilePlus, Plus, Home, Funnel, X, Download } from "lucide-react";
+>>>>>>> 843bb213bffd5d73595e4f2241cd69701dfb01a8
 import { useEffect, useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import CollapsibleTable from "@/components/collapsibleTable";
@@ -278,7 +282,10 @@ export default function ServicesPage() {
 
   const fetchIncomes = async () => {
     try {
+<<<<<<< HEAD
       console.log("Fetching incomes from API...");
+=======
+>>>>>>> 843bb213bffd5d73595e4f2241cd69701dfb01a8
       const res = await fetch("/api/manualIncome");
       const data = await res.json();
       setIncomes(data);
@@ -324,6 +331,10 @@ export default function ServicesPage() {
       console.error("Failed to refresh services:", err);
     }
   };
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 843bb213bffd5d73595e4f2241cd69701dfb01a8
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -355,6 +366,7 @@ export default function ServicesPage() {
     setServiceLogs([newService, ...serviceLogs]);
     setFilteredLogs(applyFilters([newService, ...serviceLogs]));
   };
+<<<<<<< HEAD
   const handleDelete = async (id) => {
     if (!confirm("Are you sure you want to delete this entry?")) return;
 
@@ -371,6 +383,8 @@ export default function ServicesPage() {
       console.error("Error deleting entry:", err);
     }
   };
+=======
+>>>>>>> 843bb213bffd5d73595e4f2241cd69701dfb01a8
 
   return (
     <div className="min-h-screen bg-[#1e1b2e] text-white p-4">
@@ -388,7 +402,11 @@ export default function ServicesPage() {
             onClick={() => setShowForm(!showForm)}
             className="flex items-center  bg-slate-800 md:text-xl text-sm hover:bg-slate-700 px-2 py-0.5 text-white md:px-4 md:py-1 rounded shadow"
           >
+<<<<<<< HEAD
             <Plus className="w-4 h-4 mr-2" /> {showForm ? "Cancel" : "Service"}
+=======
+            <Plus className="w-4 h-4 mr-2" /> {showForm ? "Cancel" : "Add"}
+>>>>>>> 843bb213bffd5d73595e4f2241cd69701dfb01a8
           </button>
           {/* <Link
             href="/dashboard"
@@ -467,7 +485,11 @@ export default function ServicesPage() {
             style={{ transitionDelay: fabOpen ? "150ms" : "0ms" }}
           >
             <FilePlus className="w-5 h-5 mr-2" />
+<<<<<<< HEAD
             <span className="text-sm font-medium">Service</span>
+=======
+            <span className="text-sm font-medium">Add</span>
+>>>>>>> 843bb213bffd5d73595e4f2241cd69701dfb01a8
           </button>
           <button
             onClick={() => {
@@ -612,6 +634,7 @@ export default function ServicesPage() {
 
               <div className="md:col-span-3 space-y-2">
                 <p className="text-purple-300 text-sm">Parts Used:</p>
+<<<<<<< HEAD
 
                 {form.parts.map((part, idx) => (
                   <div key={idx} className="flex gap-2 items-start">
@@ -643,6 +666,21 @@ export default function ServicesPage() {
                         </p>
                       )}
                     </div>
+=======
+                {form.parts.map((part, idx) => (
+                  <div key={idx} className="flex gap-2">
+                    <input
+                      list="inventory-items"
+                      placeholder="Select or type part"
+                      value={part.item}
+                      onChange={(e) => {
+                        const updated = [...form.parts];
+                        updated[idx].item = e.target.value;
+                        setForm({ ...form, parts: updated });
+                      }}
+                      className="bg-[#1e1b2e] p-2 rounded text-white border border-purple-700 w-2/3"
+                    />
+>>>>>>> 843bb213bffd5d73595e4f2241cd69701dfb01a8
 
                     <datalist id="inventory-items">
                       {inventoryItems.map((inv) => (
@@ -650,6 +688,7 @@ export default function ServicesPage() {
                       ))}
                     </datalist>
 
+<<<<<<< HEAD
                     {/* Quantity Input with Validation */}
                     <div className="w-1/4">
                       <input
@@ -707,6 +746,30 @@ export default function ServicesPage() {
                       parts: [...parts, { item: "", qty: 1 }],
                     });
                   }}
+=======
+                    <input
+                      type="number"
+                      placeholder="Qty"
+                      value={part.qty}
+                      min={1}
+                      onChange={(e) => {
+                        const updated = [...form.parts];
+                        updated[idx].qty = parseInt(e.target.value);
+                        setForm({ ...form, parts: updated });
+                      }}
+                      className="bg-[#1e1b2e] p-2 rounded text-white border border-purple-700 w-1/3"
+                    />
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={() =>
+                    setForm({
+                      ...form,
+                      parts: [...form.parts, { item: "", qty: 1 }],
+                    })
+                  }
+>>>>>>> 843bb213bffd5d73595e4f2241cd69701dfb01a8
                   className="mt-2 text-sm text-purple-400 hover:underline"
                 >
                   + Add another part
@@ -978,7 +1041,11 @@ export default function ServicesPage() {
 
           {showIncomeForm && (
             <div className="max-w-full mb-2 mx-auto mt-6">
+<<<<<<< HEAD
               <IncomeTable Income={incomes} onRefresh={fetchIncomes} />
+=======
+              <IncomeTable Income={incomes} />
+>>>>>>> 843bb213bffd5d73595e4f2241cd69701dfb01a8
             </div>
           )}
 
@@ -987,6 +1054,7 @@ export default function ServicesPage() {
             {filteredLogs.map((srv) => (
               <div
                 key={srv._id}
+<<<<<<< HEAD
                 className="bg-[#2a243a] rounded-lg p-4 border relative border-purple-700 text-sm"
               >
                 <button
@@ -996,6 +1064,10 @@ export default function ServicesPage() {
                 >
                   <Trash2 size={16} />
                 </button>
+=======
+                className="bg-[#2a243a] rounded-lg p-4 border border-purple-700 text-sm"
+              >
+>>>>>>> 843bb213bffd5d73595e4f2241cd69701dfb01a8
                 <div className="font-semibold text-purple-300 mb-2">
                   {srv.customer} • {srv.task}
                 </div>
@@ -1044,10 +1116,14 @@ export default function ServicesPage() {
         </>
       )}
 
+<<<<<<< HEAD
       <CollapsibleTable
         filteredLogs={filteredLogs}
         onRefresh={refreshServices}
       />
+=======
+      <CollapsibleTable filteredLogs={filteredLogs} onRefresh={refreshServices} />
+>>>>>>> 843bb213bffd5d73595e4f2241cd69701dfb01a8
     </div>
   );
 }
